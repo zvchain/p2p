@@ -43,6 +43,20 @@ const uint32_t p2p_code_disconnect_passive = 3;
 
 const uint32_t p2p_code_disconnect_timeout = 4;
 
+const uint32_t PK_SIZE = 65;
+const uint32_t SIGN_SIZE = 65;
+
+#pragma pack(push, 1)
+
+struct p2p_login
+{ 
+    uint64_t    id;
+    uint64_t    cur_time;
+    char        pk[PK_SIZE];
+    char        sign[SIGN_SIZE];
+};
+
+#pragma pack(pop)
 
 typedef void(*p2p_recved)(uint64_t id, uint32_t session, char* data, uint32_t size);
 
@@ -58,6 +72,8 @@ typedef void(*p2p_disconnected)(uint64_t id, uint32_t session, uint32_t code);
 
 typedef void(*p2p_send_waited)(uint32_t session, uint64_t peer_id);
 
+typedef struct p2p_login*(*p2p_login_sign)();
+
 struct p2p_callback
 {
     p2p_recved       recved;
@@ -71,6 +87,8 @@ struct p2p_callback
     p2p_connected    connected;
 
     p2p_disconnected disconnected;
+
+    p2p_login_sign   sign;
 };
 
 extern  void p2p_config(uint64_t id, struct p2p_callback callback);
