@@ -43,8 +43,8 @@ const uint32_t p2p_code_disconnect_passive = 3;
 
 const uint32_t p2p_code_disconnect_timeout = 4;
 
-const uint32_t PK_SIZE = 65;
-const uint32_t SIGN_SIZE = 65;
+#define PK_SIZE  65
+#define SIGN_SIZE  65
 
 #pragma pack(push, 1)
 
