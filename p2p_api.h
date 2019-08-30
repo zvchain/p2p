@@ -64,7 +64,7 @@ typedef void(*p2p_checked)(uint32_t type, const char* host_ip, const char* napt_
 
 typedef void(*p2p_listened)(const char* ip, uint16_t port, uint64_t latency);
 
-typedef void(*p2p_accepted)(uint64_t id, uint32_t session, uint32_t type);
+typedef void(*p2p_accepted)(uint64_t id, uint32_t session, uint32_t type,const char* ip, uint16_t port);
 
 typedef void(*p2p_connected)(uint64_t id, uint32_t session, uint32_t type);
 
